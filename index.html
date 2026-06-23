@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kedai Sembako KDKMP - Merah Putih</title>
     
-    <!-- TAILWIND CSS V4 VIA CDN (Otomatis Aktif Tanpa Perlu npm run dev di Hosting) -->
+    <!-- TAILWIND CSS V4 VIA CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     
     <!-- GOOGLE FONTS -->
@@ -16,12 +16,12 @@
     <!-- KONFIGURASI TEMA MERAH PUTIH -->
     <style type="text/tailwindcss">
         @theme {
-          --color-kdkmp-red: #cc1b29;     /* Merah Semangat Utama */
-          --color-kdkmp-crimson: #99111b; /* Merah Marun untuk Gradasi & Hover */
-          --color-kdkmp-white: #fcfbfc;   /* Putih Bersih Alami */
-          --color-kdkmp-cream: #f7f5f2;   /* Putih Gandum/Krem Lembut (BG) */
-          --color-kdkmp-dark: #221516;    /* Hitam Kecokelatan untuk Teks Utama */
-          --color-kdkmp-amber: #f59e0b;   /* Oranye/Emas (Rating & Bintang) */
+          --color-kdkmp-red: #cc1b29;     
+          --color-kdkmp-crimson: #99111b; 
+          --color-kdkmp-white: #fcfbfc;   
+          --color-kdkmp-cream: #f7f5f2;   
+          --color-kdkmp-dark: #221516;    
+          --color-kdkmp-amber: #f59e0b;   
         }
 
         body {
@@ -124,8 +124,8 @@
                 </div>
                 <div class="p-4 pt-0">
                     <span class="font-bold text-lg text-kdkmp-red block mb-3">Rp 72.500</span>
-                    <button onclick="pesanWA('Beras Premium Cianjur 5kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Beras Premium Cianjur 5kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
@@ -152,8 +152,8 @@
                         <span class="font-bold text-lg text-kdkmp-red">Rp 34.000</span>
                         <span class="text-xs line-through text-slate-400 inline-block ml-1">Rp 37.500</span>
                     </div>
-                    <button onclick="pesanWA('Minyak Goreng Sawit 2 Liter')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Minyak Goreng Sawit 2 Liter')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
@@ -176,8 +176,8 @@
                 </div>
                 <div class="p-4 pt-0">
                     <span class="font-bold text-lg text-kdkmp-red block mb-3">Rp 16.500</span>
-                    <button onclick="pesanWA('Gula Pasir Tebu Asli 1kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Gula Pasir Tebu Asli 1kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
@@ -202,7 +202,7 @@
                 <p id="modalDeskripsi" class="text-slate-600 text-sm mt-3 leading-relaxed">Deskripsi...</p>
                 <div class="mt-6 flex gap-3">
                     <button onclick="tutupDetail()" class="w-1/3 border border-slate-200 text-slate-500 rounded-xl text-sm font-semibold hover:bg-slate-50 transition cursor-pointer">Kembali</button>
-                    <button id="modalBtnWA" class="w-2/3 bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-md cursor-pointer">Pesan via WA</button>
+                    <button id="modalBtnPesan" class="w-2/3 bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-md cursor-pointer">Masak Pesan</button>
                 </div>
             </div>
         </div>
@@ -250,7 +250,7 @@
             document.getElementById('modalNama').innerText = nama;
             document.getElementById('modalHarga').innerText = harga;
             document.getElementById('modalDeskripsi').innerText = deskripsi;
-            document.getElementById('modalBtnWA').setAttribute('onclick', `pesanWA('${nama}')`);
+            document.getElementById('modalBtnPesan').setAttribute('onclick', `masakPesan('${nama}')`);
             document.getElementById('modalDetail').classList.remove('hidden');
         }
 
@@ -258,14 +258,10 @@
             document.getElementById('modalDetail').classList.add('hidden');
         }
 
-        function pesanWA(namaProduk) {
+        function masakPesan(namaProduk) {
             if (window.event) window.event.stopPropagation(); 
-            
-            const nomorAdmin = "#"; 
-            const pesan = encodeURIComponent(`Halo Pengelola Kedai KDKMP, saya mau beli produk: *${namaProduk}*. Apakah stoknya ready?`);
-            const urlWhatsApp = `https://wa.me/${nomorAdmin}?text=${pesan}`;
-            
-            window.open(urlWhatsApp, '_blank');
+            alert(`Sukses dimasukkan ke antrean masak pesan: ${namaProduk}`);
+            tutupDetail();
         }
     </script>
 </body>
