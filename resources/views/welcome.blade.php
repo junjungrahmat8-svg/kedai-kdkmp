@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kedai Sembako KDKMP - Merah Putih</title>
     
+    <!-- Memanggil CSS Terpisah via Laravel Vite -->
     @vite(['resources/css/app.css'])
     
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="antialiased">
 
+    <!-- NAVBAR -->
     <nav class="bg-kdkmp-red text-white sticky top-0 z-50 shadow-md border-b-2 border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -33,6 +36,7 @@
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <header class="bg-gradient-to-b from-kdkmp-red to-kdkmp-crimson text-white py-20 px-4 relative overflow-hidden shadow-inner">
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="bg-white/20 text-white backdrop-blur-sm font-semibold px-3 py-1 rounded-full text-xs uppercase tracking-wider border border-white/20">
@@ -54,6 +58,7 @@
         <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-white/5 rounded-full blur-3xl"></div>
     </header>
 
+    <!-- KATALOG PRODUK -->
     <main id="katalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-slate-200/60 pb-6">
             <div>
@@ -61,6 +66,7 @@
                 <p class="text-slate-500 text-sm mt-1">Produk segar pilihan, harga jujur pas di dompet.</p>
             </div>
             
+            <!-- FILTER KATEGORI -->
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterKategori('semua')" class="btn-kategori active bg-kdkmp-red text-white px-4 py-1.5 rounded-full font-semibold transition shadow-sm cursor-pointer">Semua</button>
                 <button onclick="filterKategori('beras')" class="btn-kategori bg-white border border-slate-200 text-slate-600 px-4 py-1.5 rounded-full font-medium hover:border-kdkmp-red hover:text-kdkmp-red transition shadow-sm cursor-pointer">Beras</button>
@@ -69,8 +75,10 @@
             </div>
         </div>
 
+        <!-- GRID PRODUK -->
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             
+            <!-- Produk 1 -->
             <div class="card-produk bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between" data-kategori="beras">
                 <div onclick="bukaDetail('Beras Premium Cianjur 5kg', 'Rp 72.500', 'Beras kualitas premium pilihan nusantara. Bulir utuh, putih alami tanpa pemutih, dan menghasilkan nasi yang pulen dan harum.')" class="cursor-pointer group">
                     <div class="bg-slate-50 h-44 flex items-center justify-center relative text-slate-400 group-hover:scale-102 transition duration-300">
@@ -89,19 +97,20 @@
                 </div>
                 <div class="p-4 pt-0">
                     <span class="font-bold text-lg text-kdkmp-red block mb-3">Rp 72.500</span>
-                    <button onclick="pesanWA('Beras Premium Cianjur 5kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Beras Premium Cianjur 5kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
 
+            <!-- Produk 2 -->
             <div class="card-produk bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between" data-kategori="minyak">
                 <div onclick="bukaDetail('Minyak Goreng Sawit 2 Liter', 'Rp 34.000', 'Minyak goreng kelapa sawit murni. Diproses dengan 2 kali penyaringan sehingga jernih, mengoreng lebih garing, serta menjaga kesehatan masakan.')" class="cursor-pointer group">
                     <div class="bg-slate-50 h-44 flex items-center justify-center relative text-slate-400 group-hover:scale-102 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
-                        <span class="absolute top-3 left-3 bg-kdkmp-red text-white font-bold text-xxs px-2 py-0.5 rounded-md uppercase tracking-wider shadow-sm animate-pulse">Promo</span>
+                        <span class="absolute top-3 left-3 bg-kdkmp-red text-white font-bold text-xxs px-2 py-0.5 rounded-md uppercase tracking-wider shadow-sm">Promo</span>
                     </div>
                     <div class="p-4">
                         <span class="text-xs font-semibold text-kdkmp-red uppercase tracking-wider">Minyak Goreng</span>
@@ -116,12 +125,13 @@
                         <span class="font-bold text-lg text-kdkmp-red">Rp 34.000</span>
                         <span class="text-xs line-through text-slate-400 inline-block ml-1">Rp 37.500</span>
                     </div>
-                    <button onclick="pesanWA('Minyak Goreng Sawit 2 Liter')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Minyak Goreng Sawit 2 Liter')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
 
+            <!-- Produk 3 -->
             <div class="card-produk bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition duration-300 flex flex-col justify-between" data-kategori="gula">
                 <div onclick="bukaDetail('Gula Pasir Tebu Asli 1kg', 'Rp 16.500', 'Gula kristal putih manis alami yang diekstrak dari tebu pilihan petani lokal. Bersih, higienis, dan tanpa pemanis buatan.')" class="cursor-pointer group">
                     <div class="bg-slate-50 h-44 flex items-center justify-center relative text-slate-400 group-hover:scale-102 transition duration-300">
@@ -139,8 +149,8 @@
                 </div>
                 <div class="p-4 pt-0">
                     <span class="font-bold text-lg text-kdkmp-red block mb-3">Rp 16.500</span>
-                    <button onclick="pesanWA('Gula Pasir Tebu Asli 1kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
-                        Pesan via WA
+                    <button onclick="masakPesan('Gula Pasir Tebu Asli 1kg')" class="w-full bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-sm cursor-pointer flex items-center justify-center gap-2">
+                        Masak Pesan
                     </button>
                 </div>
             </div>
@@ -148,6 +158,7 @@
         </div>
     </main>
 
+    <!-- MODAL DETAIL PRODUK -->
     <div id="modalDetail" class="fixed inset-0 bg-kdkmp-dark/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm transition-all duration-300">
         <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100 animate-fade-in">
             <div class="bg-slate-50 h-48 flex items-center justify-center text-slate-400 relative">
@@ -164,12 +175,13 @@
                 <p id="modalDeskripsi" class="text-slate-600 text-sm mt-3 leading-relaxed">Deskripsi...</p>
                 <div class="mt-6 flex gap-3">
                     <button onclick="tutupDetail()" class="w-1/3 border border-slate-200 text-slate-500 rounded-xl text-sm font-semibold hover:bg-slate-50 transition cursor-pointer">Kembali</button>
-                    <button id="modalBtnWA" class="w-2/3 bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-md cursor-pointer">Pesan via WA</button>
+                    <button id="modalBtnPesan" class="w-2/3 bg-kdkmp-red text-white py-2.5 rounded-xl text-sm font-bold hover:bg-kdkmp-crimson transition shadow-md cursor-pointer">Masak Pesan</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-kdkmp-dark text-slate-400 mt-24 border-t-4 border-kdkmp-red">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm">
             <div>
@@ -182,12 +194,12 @@
         </div>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         function filterKategori(kategori) {
             const cards = document.querySelectorAll('.card-produk');
             const buttons = document.querySelectorAll('.btn-kategori');
             
-            // Atur ulang warna tombol filter
             buttons.forEach(btn => {
                 btn.classList.remove('bg-kdkmp-red', 'text-white', 'font-semibold');
                 btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200', 'font-medium');
@@ -198,7 +210,6 @@
                 window.event.target.classList.remove('bg-white', 'text-slate-600', 'border-slate-200', 'font-medium');
             }
 
-            // Animasi filter produk instan
             cards.forEach(card => {
                 if (kategori === 'semua' || card.getAttribute('data-kategori') === kategori) {
                     card.style.display = 'flex';
@@ -212,7 +223,7 @@
             document.getElementById('modalNama').innerText = nama;
             document.getElementById('modalHarga').innerText = harga;
             document.getElementById('modalDeskripsi').innerText = deskripsi;
-            document.getElementById('modalBtnWA').setAttribute('onclick', `pesanWA('${nama}')`);
+            document.getElementById('modalBtnPesan').setAttribute('onclick', `masakPesan('${nama}')`);
             document.getElementById('modalDetail').classList.remove('hidden');
         }
 
@@ -220,14 +231,15 @@
             document.getElementById('modalDetail').classList.add('hidden');
         }
 
-        function pesanWA(namaProduk) {
+        // LOGIC BARU: Menggantikan fungsi redirect WhatsApp langsung
+        function masakPesan(namaProduk) {
             if (window.event) window.event.stopPropagation(); 
             
-            const nomorAdmin = "6281234567890"; 
-            const pesan = encodeURIComponent(`Halo Pengelola Kedai KDKMP, saya mau beli produk: *${namaProduk}*. Apakah stoknya ready?`);
-            const urlWhatsApp = `https://wa.me/${nomorAdmin}?text=${pesan}`;
+            // Di sini kamu bisa masukkan logic keranjang belanja Laravel / AJAX ke controller nanti
+            alert(`Sukses dimasukkan ke antrean masak pesan: ${namaProduk}`);
             
-            window.open(urlWhatsApp, '_blank');
+            // Tutup modal secara otomatis jika sedang terbuka
+            tutupDetail();
         }
     </script>
 </body>
