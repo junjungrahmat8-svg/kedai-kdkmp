@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+@theme {
+  --color-kdkmp-red: #cc1b29;     /* Merah Semangat Utama */
+  --color-kdkmp-crimson: #99111b; /* Merah Marun untuk Gradasi & Hover */
+  --color-kdkmp-white: #fcfbfc;   /* Putih Bersih Alami */
+  --color-kdkmp-cream: #f7f5f2;   /* Putih Gandum/Krem Lembut (BG) */
+  --color-kdkmp-dark: #221516;    /* Hitam Kecokelatan untuk Teks Utama */
+  --color-kdkmp-amber: #f59e0b;   /* Oranye/Emas (Rating & Bintang) */
+}
+
+body {
+    background-color: var(--color-kdkmp-cream);
+    color: var(--color-kdkmp-dark);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Animasi Halus Pop Up Modal */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
